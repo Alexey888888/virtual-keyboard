@@ -12,6 +12,7 @@ function addHtml() {
   wrapper.append(title);
 
   textarea = document.createElement('textarea');
+  textarea.classList.add('textarea-scope');
   wrapper.append(textarea);
 
   buttonsWrapper = document.createElement('div');

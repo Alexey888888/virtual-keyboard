@@ -1,3 +1,9 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .key-row {
   display: flex;
   justify-content: space-between;
@@ -27,4 +33,11 @@ div[data-id='Space'] {
 div[data-id='ShiftRight'] {
   width: 22px;
   padding-left: 5px;
+}
+
+.textarea-scope {
+  height: 100px;
+  width: 765px;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
