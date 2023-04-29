@@ -17,6 +17,7 @@
   color: #efe7e7;
   border-radius: 5px 5px 12px 12px;
   box-shadow: 1px 1px 5px red;
+  cursor: pointer;
 }
 
 .buttons-wrapper {
@@ -40,4 +41,9 @@ div[data-id='ShiftRight'] {
   width: 765px;
   border-radius: 5px;
   margin-bottom: 20px;
+}
+
+.active {
+  background: #a1f602;
+  color: #040404;
 }

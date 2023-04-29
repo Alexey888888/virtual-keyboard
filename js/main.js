@@ -98,3 +98,27 @@ function createKeyRow() {
 }
 
 createKeyRow();
+
+const keyArr = document.querySelectorAll('.keyboard__item');
+// keyArr.forEach((item) => {
+//   console.log(item.dataset.id);
+// });
+
+const keydownHandler = (event) => {
+  textarea.focus();
+  console.log(event.key);
+  console.log(event.code);
+  textarea.innerHTML += event.key;
+  keyArr.forEach((item) => {
+    if (item.dataset.id === event.code) {
+      item.classList.add('active');
+    }
+  });
+};
+
+document.addEventListener('keydown', keydownHandler);
+document.addEventListener('keyup', () => {
+  keyArr.forEach((item) => {
+    item.classList.remove('active');
+  });
+});
