@@ -1,4 +1,4 @@
-import { BUTTONS_ARRAY_EN } from './keyValue.js';
+import { BUTTONS_ARRAY_EN, keyText } from './keyValue.js';
 
 let textarea = null;
 let buttonsWrapper = null;
@@ -98,6 +98,7 @@ function createKeyRow() {
 }
 
 createKeyRow();
+textarea.focus();
 
 const keyArr = document.querySelectorAll('.keyboard__item');
 // keyArr.forEach((item) => {
@@ -105,15 +106,36 @@ const keyArr = document.querySelectorAll('.keyboard__item');
 // });
 
 const keydownHandler = (event) => {
-  textarea.focus();
-  console.log(event.key);
-  console.log(event.code);
-  textarea.innerHTML += event.key;
+  if (event.code === 'AltLeft' || event.code === 'AltRight') {
+    event.preventDefault();
+  }
   keyArr.forEach((item) => {
     if (item.dataset.id === event.code) {
       item.classList.add('active');
     }
   });
+  // console.log(event.key);
+  // console.log(event.code);
+  // console.log(event);
+  if (event.ctrlKey && event.code === 'AltLeft') {
+    console.log('hi');
+    // changeLang();
+  }
+  if (keyText.includes(event.code)) {
+    event.preventDefault();
+    keyArr.forEach((item) => {
+      if (item.dataset.id === event.code) {
+        // console.log(item);
+        item.classList.add('active');
+        if (event.shiftKey === false) {
+          textarea.value += item.textContent.toLowerCase();
+        }
+        if (event.shiftKey === true) {
+          textarea.value += item.textContent;
+        }
+      }
+    });
+  }
 };
 
 document.addEventListener('keydown', keydownHandler);

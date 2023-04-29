@@ -12,7 +12,7 @@
 .keyboard__item {
   border: 1px solid #333333;
   padding: 15px;
-  margin: 5px;
+  margin: 4px;
   background: #3a3838;
   color: #efe7e7;
   border-radius: 5px 5px 12px 12px;
@@ -28,11 +28,11 @@
 }
 
 div[data-id='Space'] {
-  width: 150px;
+  width: 225px;
 }
 
 div[data-id='ShiftRight'] {
-  width: 22px;
+  width: 20px;
   padding-left: 5px;
 }
 
