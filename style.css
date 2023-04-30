@@ -22,7 +22,7 @@
 
 .buttons-wrapper {
   border: 1px solid #474444;
-  width: 770px;
+  width: 790px;
   background: #7c7878;
   border-radius: 5px;
 }
@@ -38,7 +38,7 @@ div[data-id='ShiftRight'] {
 
 .textarea-scope {
   height: 100px;
-  width: 765px;
+  width: 785px;
   border-radius: 5px;
   margin-bottom: 20px;
 }

@@ -1,7 +1,9 @@
-import { BUTTONS_ARRAY_EN, keyText } from './keyValue.js';
+import { BUTTONS_ARRAY_EN, keyText, BUTTONS_ARRAY_RU } from './keyValue.js';
 
 let textarea = null;
 let buttonsWrapper = null;
+let lang = BUTTONS_ARRAY_RU;
+let keyArr = null;
 
 function addHtml() {
   const wrapper = document.createElement('div');
@@ -35,14 +37,17 @@ function addHtml() {
 addHtml();
 
 function createKeyRow() {
+  buttonsWrapper.innerHTML = '';
+  lang = lang === BUTTONS_ARRAY_RU ? BUTTONS_ARRAY_EN : BUTTONS_ARRAY_RU;
+
   {
     const keyRow = document.createElement('div');
     keyRow.classList.add('key-row');
-    for (let i = 0; i < BUTTONS_ARRAY_EN[0].length; i += 1) {
+    for (let i = 0; i < lang[0].length; i += 1) {
       const key = document.createElement('div');
       key.classList.add('keyboard__item');
-      key.dataset.id = BUTTONS_ARRAY_EN[0][i].id;
-      key.innerHTML = BUTTONS_ARRAY_EN[0][i].down;
+      key.dataset.id = lang[0][i].id;
+      key.innerHTML = lang[0][i].down;
       keyRow.append(key);
     }
     buttonsWrapper.append(keyRow);
@@ -50,11 +55,11 @@ function createKeyRow() {
   {
     const keyRow = document.createElement('div');
     keyRow.classList.add('key-row');
-    for (let i = 0; i < BUTTONS_ARRAY_EN[1].length; i += 1) {
+    for (let i = 0; i < lang[1].length; i += 1) {
       const key = document.createElement('div');
       key.classList.add('keyboard__item');
-      key.dataset.id = BUTTONS_ARRAY_EN[1][i].id;
-      key.innerHTML = BUTTONS_ARRAY_EN[1][i].down;
+      key.dataset.id = lang[1][i].id;
+      key.innerHTML = lang[1][i].down;
       keyRow.append(key);
     }
     buttonsWrapper.append(keyRow);
@@ -62,11 +67,11 @@ function createKeyRow() {
   {
     const keyRow = document.createElement('div');
     keyRow.classList.add('key-row');
-    for (let i = 0; i < BUTTONS_ARRAY_EN[2].length; i += 1) {
+    for (let i = 0; i < lang[2].length; i += 1) {
       const key = document.createElement('div');
       key.classList.add('keyboard__item');
-      key.dataset.id = BUTTONS_ARRAY_EN[2][i].id;
-      key.innerHTML = BUTTONS_ARRAY_EN[2][i].down;
+      key.dataset.id = lang[2][i].id;
+      key.innerHTML = lang[2][i].down;
       keyRow.append(key);
     }
     buttonsWrapper.append(keyRow);
@@ -74,11 +79,11 @@ function createKeyRow() {
   {
     const keyRow = document.createElement('div');
     keyRow.classList.add('key-row');
-    for (let i = 0; i < BUTTONS_ARRAY_EN[3].length; i += 1) {
+    for (let i = 0; i < lang[3].length; i += 1) {
       const key = document.createElement('div');
       key.classList.add('keyboard__item');
-      key.dataset.id = BUTTONS_ARRAY_EN[3][i].id;
-      key.innerHTML = BUTTONS_ARRAY_EN[3][i].down;
+      key.dataset.id = lang[3][i].id;
+      key.innerHTML = lang[3][i].down;
       keyRow.append(key);
     }
     buttonsWrapper.append(keyRow);
@@ -86,21 +91,21 @@ function createKeyRow() {
   {
     const keyRow = document.createElement('div');
     keyRow.classList.add('key-row');
-    for (let i = 0; i < BUTTONS_ARRAY_EN[4].length; i += 1) {
+    for (let i = 0; i < lang[4].length; i += 1) {
       const key = document.createElement('div');
       key.classList.add('keyboard__item');
-      key.dataset.id = BUTTONS_ARRAY_EN[4][i].id;
-      key.innerHTML = BUTTONS_ARRAY_EN[4][i].down;
+      key.dataset.id = lang[4][i].id;
+      key.innerHTML = lang[4][i].down;
       keyRow.append(key);
     }
     buttonsWrapper.append(keyRow);
   }
+  keyArr = document.querySelectorAll('.keyboard__item');
 }
 
 createKeyRow();
 textarea.focus();
 
-const keyArr = document.querySelectorAll('.keyboard__item');
 // keyArr.forEach((item) => {
 //   console.log(item.dataset.id);
 // });
@@ -119,7 +124,7 @@ const keydownHandler = (event) => {
   // console.log(event);
   if (event.ctrlKey && event.code === 'AltLeft') {
     console.log('hi');
-    // changeLang();
+    createKeyRow();
   }
   if (keyText.includes(event.code)) {
     event.preventDefault();
