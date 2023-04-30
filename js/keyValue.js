@@ -16,7 +16,7 @@ const BUTTONS_ARRAY_EN = [
     { id: 'Backspace', down: 'Backspace' },
   ],
   [
-    { id: 'Tab', down: 'Tab' },
+    { id: 'Tab', down: '\t' },
     { id: 'KeyQ', down: 'Q' },
     { id: 'KeyW', down: 'W' },
     { id: 'KeyE', down: 'E' },
@@ -54,7 +54,7 @@ const BUTTONS_ARRAY_EN = [
     { id: 'KeyC', down: 'C' },
     { id: 'KeyV', down: 'V' },
     { id: 'KeyB', down: 'B' },
-    { id: 'KeyN', down: '$' },
+    { id: 'KeyN', down: 'N' },
     { id: 'KeyM', down: 'M' },
     { id: 'Comma', down: ',' },
     { id: 'Period', down: '.' },
@@ -79,6 +79,7 @@ const BUTTONS_ARRAY_EN = [
 ];
 
 const keyText = [
+  'Tab',
   'Backquote',
   'Digit1',
   'Digit2',
@@ -151,7 +152,7 @@ const BUTTONS_ARRAY_RU = [
     { id: 'Backspace', down: 'Backspace' },
   ],
   [
-    { id: 'Tab', down: 'Tab' },
+    { id: 'Tab', down: '\t' },
     { id: 'KeyQ', down: 'Й' },
     { id: 'KeyW', down: 'Ц' },
     { id: 'KeyE', down: 'У' },

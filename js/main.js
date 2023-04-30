@@ -193,6 +193,7 @@ const mouseDownHandler = (event) => {
 };
 
 const mouseUpHandler = (event) => {
+  textarea.focus();
   console.log(event.target.dataset.id);
   keyArr.forEach((item) => {
     item.classList.remove('active');
