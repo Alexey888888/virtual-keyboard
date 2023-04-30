@@ -20,6 +20,10 @@
   transition: all 0.3s;
 }
 
+.keyboard__item:hover {
+  background: #aaa4a4;
+}
+
 .buttons-wrapper {
   border: 1px solid #474444;
   width: 790px;
@@ -49,4 +53,8 @@ div[data-id='ShiftRight'] {
   border-radius: 100px;
   transition: all 0.5s;
   box-shadow: 1px 1px 5px #ffd900;
+}
+
+.active:hover {
+  background: #a1f602;
 }

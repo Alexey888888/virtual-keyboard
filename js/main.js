@@ -174,3 +174,30 @@ document.addEventListener('keyup', () => {
     item.classList.remove('active');
   });
 });
+
+const mouseDownHandler = (event) => {
+  textarea.focus();
+  console.log(event.target.dataset.id);
+  keyArr.forEach((item) => {
+    if (item.dataset.id === event.target.dataset.id) {
+      // console.log(item);
+      item.classList.add('active');
+      if (event.shiftKey === false) {
+        textarea.value += item.textContent.toLowerCase();
+      }
+      if (event.shiftKey === true) {
+        textarea.value += item.textContent;
+      }
+    }
+  });
+};
+
+const mouseUpHandler = (event) => {
+  console.log(event.target.dataset.id);
+  keyArr.forEach((item) => {
+    item.classList.remove('active');
+  });
+};
+
+document.addEventListener('mousedown', mouseDownHandler);
+document.addEventListener('mouseup', mouseUpHandler);
