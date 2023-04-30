@@ -2,8 +2,23 @@ import { BUTTONS_ARRAY_EN, keyText, BUTTONS_ARRAY_RU } from './keyValue.js';
 
 let textarea = null;
 let buttonsWrapper = null;
-let lang = BUTTONS_ARRAY_RU;
+let lang = BUTTONS_ARRAY_EN;
 let keyArr = null;
+let language = 'en';
+
+const setLocalStorage = () => {
+  language = lang === BUTTONS_ARRAY_RU ? 'ru' : 'en';
+  localStorage.setItem('language', language);
+};
+
+const getLocalStorage = () => {
+  if (localStorage.getItem('language')) {
+    language = localStorage.getItem('language');
+  }
+};
+
+window.addEventListener('beforeunload', setLocalStorage);
+window.addEventListener('load', getLocalStorage);
 
 function addHtml() {
   const wrapper = document.createElement('div');
@@ -36,9 +51,20 @@ function addHtml() {
 
 addHtml();
 
+const changeLang = () => {
+  lang = lang === BUTTONS_ARRAY_EN ? BUTTONS_ARRAY_RU : BUTTONS_ARRAY_EN;
+  localStorage.language = lang === BUTTONS_ARRAY_RU ? 'ru' : 'en';
+  createKeyRow();
+};
+
 function createKeyRow() {
   buttonsWrapper.innerHTML = '';
-  lang = lang === BUTTONS_ARRAY_RU ? BUTTONS_ARRAY_EN : BUTTONS_ARRAY_RU;
+
+  if (localStorage.getItem('language')) {
+    if (localStorage.language === 'ru') {
+      lang = BUTTONS_ARRAY_RU;
+    }
+  }
 
   {
     const keyRow = document.createElement('div');
@@ -104,13 +130,13 @@ function createKeyRow() {
 }
 
 createKeyRow();
-textarea.focus();
 
 // keyArr.forEach((item) => {
 //   console.log(item.dataset.id);
 // });
 
 const keydownHandler = (event) => {
+  textarea.focus();
   if (event.code === 'AltLeft' || event.code === 'AltRight') {
     event.preventDefault();
   }
@@ -123,8 +149,7 @@ const keydownHandler = (event) => {
   // console.log(event.code);
   // console.log(event);
   if (event.ctrlKey && event.code === 'AltLeft') {
-    console.log('hi');
-    createKeyRow();
+    changeLang();
   }
   if (keyText.includes(event.code)) {
     event.preventDefault();
