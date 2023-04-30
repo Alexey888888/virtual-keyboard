@@ -135,7 +135,7 @@ const keyText = [
 
 const BUTTONS_ARRAY_RU = [
   [
-    { id: 'Backquote', up: '~', down: '`Ё' },
+    { id: 'Backquote', up: '~', down: 'Ё' },
     { id: 'Digit1', up: '!', down: '1' },
     { id: 'Digit2', up: '@', down: '2' },
     { id: 'Digit3', up: '#', down: '3' },

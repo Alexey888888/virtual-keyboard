@@ -10,14 +10,14 @@
 }
 
 .keyboard__item {
-  border: 1px solid #333333;
   padding: 15px;
   margin: 4px;
   background: #3a3838;
   color: #efe7e7;
   border-radius: 5px 5px 12px 12px;
-  box-shadow: 1px 1px 5px red;
+  box-shadow: 1px 1px 5px #ff0000;
   cursor: pointer;
+  transition: all 0.3s;
 }
 
 .buttons-wrapper {
@@ -46,4 +46,7 @@ div[data-id='ShiftRight'] {
 .active {
   background: #a1f602;
   color: #040404;
+  border-radius: 100px;
+  transition: all 0.5s;
+  box-shadow: 1px 1px 5px #ffd900;
 }
