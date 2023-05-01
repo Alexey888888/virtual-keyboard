@@ -43,8 +43,7 @@ function addHtml() {
 
   const subDescription = document.createElement('p');
   subDescription.classList.add('description');
-  subDescription.innerHTML =
-    'To switch language combination: left CTRL + left ALT';
+  subDescription.innerHTML = 'To switch language combination: left CTRL + left ALT';
   wrapper.append(subDescription);
 
   document.body.append(wrapper);
@@ -132,15 +131,11 @@ const changeLang = () => {
 
 createKeyRow();
 
-// keyArr.forEach((item) => {
-//   console.log(item.dataset.id);
-// });
-
 const keydownHandler = (event) => {
-  let cursorStart = textarea.selectionStart;
-  let cursorEnd = textarea.selectionEnd;
-  let textBeforeCursor = textarea.value.substring(0, cursorStart);
-  let textAfterCursor = textarea.value.substring(cursorEnd);
+  const cursorStart = textarea.selectionStart;
+  const cursorEnd = textarea.selectionEnd;
+  const textBeforeCursor = textarea.value.substring(0, cursorStart);
+  const textAfterCursor = textarea.value.substring(cursorEnd);
   textarea.focus();
   if (event.code === 'AltLeft' || event.code === 'AltRight') {
     event.preventDefault();
@@ -154,9 +149,6 @@ const keydownHandler = (event) => {
       }
     }
   });
-  // console.log(event.key);
-  // console.log(event.code);
-  // console.log(event);
   if (event.ctrlKey && event.code === 'AltLeft') {
     changeLang();
   }
@@ -164,17 +156,14 @@ const keydownHandler = (event) => {
     event.preventDefault();
     keyArr.forEach((item) => {
       if (item.dataset.id === event.code) {
-        // console.log(item);
         item.classList.add('active');
         if (event.shiftKey === false) {
-          textarea.value =
-            textBeforeCursor + item.textContent.toLowerCase() + textAfterCursor;
+          textarea.value = textBeforeCursor + item.textContent.toLowerCase() + textAfterCursor;
           textarea.selectionStart = textBeforeCursor.length + 1;
           textarea.selectionEnd = textBeforeCursor.length + 1;
         }
         if (event.shiftKey === true || document.querySelector('.caps-active')) {
-          textarea.value =
-            textBeforeCursor + item.textContent + textAfterCursor;
+          textarea.value = textBeforeCursor + item.textContent + textAfterCursor;
           textarea.selectionStart = textBeforeCursor.length + 1;
           textarea.selectionEnd = textBeforeCursor.length + 1;
         }
@@ -191,29 +180,37 @@ document.addEventListener('keyup', () => {
 });
 
 const mouseDownHandler = (event) => {
-  let cursorStart = textarea.selectionStart;
-  let cursorEnd = textarea.selectionEnd;
-  let textBeforeCursor = textarea.value.substring(0, cursorStart);
-  let textAfterCursor = textarea.value.substring(cursorEnd);
+  const cursorStart = textarea.selectionStart;
+  const cursorEnd = textarea.selectionEnd;
+  const textBeforeCursor = textarea.value.substring(0, cursorStart);
+  const textAfterCursor = textarea.value.substring(cursorEnd);
   textarea.focus();
   if (event.target.dataset.id === 'CapsLock') {
     event.target.classList.toggle('caps-active');
   }
-  if (event.target.dataset.id === undefined)
+  if (event.target.dataset.id === undefined) {
     document
       .querySelector('.buttons-wrapper')
       .classList.add('buttons-wrapper-active');
+  }
   keyArr.forEach((item) => {
     if (event.target.dataset.id === 'Backspace') {
       event.target.classList.add('active');
       textarea.value = textBeforeCursor.slice(0, -1) + textAfterCursor;
-      if (textBeforeCursor.length > 0)
+      if (textBeforeCursor.length > 0) {
         textarea.selectionEnd = textBeforeCursor.length - 1;
+      }
+    } else if (event.target.dataset.id === 'Delete') {
+      textarea.value = textBeforeCursor + textAfterCursor.substring(1);
+      textarea.selectionEnd = textBeforeCursor.length;
+    } else if (
+      event.target.dataset.id === 'ControlLeft' || event.target.dataset.id === 'AltLeft' || event.target.dataset.id === 'ShiftLeft' || event.target.dataset.id === 'AltRight' || event.target.dataset.id === 'ShiftRight' || event.target.dataset.id === 'ControlRight' || event.target.dataset.id === 'MetaLeft'
+    ) {
+      textarea.selectionStart = textarea.selectionEnd;
     } else if (item.dataset.id === event.target.dataset.id) {
       item.classList.add('active');
       if (event.shiftKey === false && !document.querySelector('.caps-active')) {
-        textarea.value =
-          textBeforeCursor + item.textContent.toLowerCase() + textAfterCursor;
+        textarea.value = textBeforeCursor + item.textContent.toLowerCase() + textAfterCursor;
         textarea.selectionStart = textBeforeCursor.length + 1;
         textarea.selectionEnd = textBeforeCursor.length + 1;
       }
@@ -224,12 +221,11 @@ const mouseDownHandler = (event) => {
   });
 };
 
-const mouseUpHandler = (event) => {
+const mouseUpHandler = () => {
   textarea.focus();
   document
     .querySelector('.buttons-wrapper')
     .classList.remove('buttons-wrapper-active');
-  console.log(event.target.dataset.id);
   keyArr.forEach((item) => {
     item.classList.remove('active');
   });

@@ -52,6 +52,38 @@ div[data-id='CapsLock']::after {
   content: 'CapsLock';
 }
 
+div[data-id='Delete']::after {
+  content: 'Del';
+}
+
+div[data-id='ShiftLeft']::after {
+  content: 'Shift';
+}
+
+div[data-id='ShiftRight']::after {
+  content: 'Shift';
+}
+
+div[data-id='ControlRight']::after {
+  content: 'Ctrl';
+}
+
+div[data-id='ControlLeft']::after {
+  content: 'Ctrl';
+}
+
+div[data-id='AltLeft']::after {
+  content: 'Alt';
+}
+
+div[data-id='AltRight']::after {
+  content: 'Alt';
+}
+
+div[data-id='MetaLeft']::after {
+  content: 'Win';
+}
+
 .textarea-scope {
   height: 100px;
   width: 785px;
