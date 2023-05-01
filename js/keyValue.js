@@ -33,7 +33,7 @@ const BUTTONS_ARRAY_EN = [
     { id: 'Delete', down: 'Del' },
   ],
   [
-    { id: 'CapsLock', down: 'CapsLock' },
+    { id: 'CapsLock', down: '' },
     { id: 'KeyA', down: 'A' },
     { id: 'KeyS', down: 'S' },
     { id: 'KeyD', down: 'D' },
@@ -169,7 +169,7 @@ const BUTTONS_ARRAY_RU = [
     { id: 'Delete', down: 'Del' },
   ],
   [
-    { id: 'CapsLock', down: 'CapsLock' },
+    { id: 'CapsLock', down: '' },
     { id: 'KeyA', down: 'Ф' },
     { id: 'KeyS', down: 'Ы' },
     { id: 'KeyD', down: 'В' },

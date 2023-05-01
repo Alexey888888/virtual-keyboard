@@ -43,7 +43,8 @@ function addHtml() {
 
   const subDescription = document.createElement('p');
   subDescription.classList.add('description');
-  subDescription.innerHTML = 'To switch language combination: left CTRL + ALT';
+  subDescription.innerHTML =
+    'To switch language combination: left CTRL + left ALT';
   wrapper.append(subDescription);
 
   document.body.append(wrapper);
@@ -136,13 +137,21 @@ createKeyRow();
 // });
 
 const keydownHandler = (event) => {
+  let cursorStart = textarea.selectionStart;
+  let cursorEnd = textarea.selectionEnd;
+  let textBeforeCursor = textarea.value.substring(0, cursorStart);
+  let textAfterCursor = textarea.value.substring(cursorEnd);
   textarea.focus();
   if (event.code === 'AltLeft' || event.code === 'AltRight') {
     event.preventDefault();
   }
+
   keyArr.forEach((item) => {
     if (item.dataset.id === event.code) {
       item.classList.add('active');
+      if (event.code === 'CapsLock') {
+        item.classList.toggle('caps-active');
+      }
     }
   });
   // console.log(event.key);
@@ -158,10 +167,16 @@ const keydownHandler = (event) => {
         // console.log(item);
         item.classList.add('active');
         if (event.shiftKey === false) {
-          textarea.value += item.textContent.toLowerCase();
+          textarea.value =
+            textBeforeCursor + item.textContent.toLowerCase() + textAfterCursor;
+          textarea.selectionStart = textBeforeCursor.length + 1;
+          textarea.selectionEnd = textBeforeCursor.length + 1;
         }
-        if (event.shiftKey === true) {
-          textarea.value += item.textContent;
+        if (event.shiftKey === true || document.querySelector('.caps-active')) {
+          textarea.value =
+            textBeforeCursor + item.textContent + textAfterCursor;
+          textarea.selectionStart = textBeforeCursor.length + 1;
+          textarea.selectionEnd = textBeforeCursor.length + 1;
         }
       }
     });
@@ -181,7 +196,9 @@ const mouseDownHandler = (event) => {
   let textBeforeCursor = textarea.value.substring(0, cursorStart);
   let textAfterCursor = textarea.value.substring(cursorEnd);
   textarea.focus();
-  console.log(event.target.dataset.id);
+  if (event.target.dataset.id === 'CapsLock') {
+    event.target.classList.toggle('caps-active');
+  }
   if (event.target.dataset.id === undefined)
     document
       .querySelector('.buttons-wrapper')
@@ -192,14 +209,15 @@ const mouseDownHandler = (event) => {
       textarea.value = textBeforeCursor.slice(0, -1) + textAfterCursor;
       if (textBeforeCursor.length > 0)
         textarea.selectionEnd = textBeforeCursor.length - 1;
-      console.log(cursorStart);
     } else if (item.dataset.id === event.target.dataset.id) {
-      // console.log(item);
       item.classList.add('active');
-      if (event.shiftKey === false) {
-        textarea.value += item.textContent.toLowerCase();
+      if (event.shiftKey === false && !document.querySelector('.caps-active')) {
+        textarea.value =
+          textBeforeCursor + item.textContent.toLowerCase() + textAfterCursor;
+        textarea.selectionStart = textBeforeCursor.length + 1;
+        textarea.selectionEnd = textBeforeCursor.length + 1;
       }
-      if (event.shiftKey === true) {
+      if (event.shiftKey === true || document.querySelector('.caps-active')) {
         textarea.value += item.textContent;
       }
     }

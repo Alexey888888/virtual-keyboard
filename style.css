@@ -48,6 +48,10 @@ div[data-id='Enter']::after {
   content: 'Enter';
 }
 
+div[data-id='CapsLock']::after {
+  content: 'CapsLock';
+}
+
 .textarea-scope {
   height: 100px;
   width: 785px;
@@ -55,7 +59,8 @@ div[data-id='Enter']::after {
   margin-bottom: 20px;
 }
 
-.active {
+.active,
+.caps-active {
   background: #a1f602;
   color: #040404;
   border-radius: 100px;
