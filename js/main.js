@@ -51,12 +51,6 @@ function addHtml() {
 
 addHtml();
 
-const changeLang = () => {
-  lang = lang === BUTTONS_ARRAY_EN ? BUTTONS_ARRAY_RU : BUTTONS_ARRAY_EN;
-  localStorage.language = lang === BUTTONS_ARRAY_RU ? 'ru' : 'en';
-  createKeyRow();
-};
-
 function createKeyRow() {
   buttonsWrapper.innerHTML = '';
 
@@ -129,6 +123,12 @@ function createKeyRow() {
   keyArr = document.querySelectorAll('.keyboard__item');
 }
 
+const changeLang = () => {
+  lang = lang === BUTTONS_ARRAY_EN ? BUTTONS_ARRAY_RU : BUTTONS_ARRAY_EN;
+  localStorage.language = lang === BUTTONS_ARRAY_RU ? 'ru' : 'en';
+  createKeyRow();
+};
+
 createKeyRow();
 
 // keyArr.forEach((item) => {
@@ -176,10 +176,24 @@ document.addEventListener('keyup', () => {
 });
 
 const mouseDownHandler = (event) => {
+  let cursorStart = textarea.selectionStart;
+  let cursorEnd = textarea.selectionEnd;
+  let textBeforeCursor = textarea.value.substring(0, cursorStart);
+  let textAfterCursor = textarea.value.substring(cursorEnd);
   textarea.focus();
   console.log(event.target.dataset.id);
+  if (event.target.dataset.id === undefined)
+    document
+      .querySelector('.buttons-wrapper')
+      .classList.add('buttons-wrapper-active');
   keyArr.forEach((item) => {
-    if (item.dataset.id === event.target.dataset.id) {
+    if (event.target.dataset.id === 'Backspace') {
+      event.target.classList.add('active');
+      textarea.value = textBeforeCursor.slice(0, -1) + textAfterCursor;
+      if (textBeforeCursor.length > 0)
+        textarea.selectionEnd = textBeforeCursor.length - 1;
+      console.log(cursorStart);
+    } else if (item.dataset.id === event.target.dataset.id) {
       // console.log(item);
       item.classList.add('active');
       if (event.shiftKey === false) {
@@ -194,6 +208,9 @@ const mouseDownHandler = (event) => {
 
 const mouseUpHandler = (event) => {
   textarea.focus();
+  document
+    .querySelector('.buttons-wrapper')
+    .classList.remove('buttons-wrapper-active');
   console.log(event.target.dataset.id);
   keyArr.forEach((item) => {
     item.classList.remove('active');

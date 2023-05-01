@@ -45,7 +45,7 @@ const BUTTONS_ARRAY_EN = [
     { id: 'KeyL', down: 'L' },
     { id: 'Semicolon', down: ';' },
     { id: 'Quote', down: "'" },
-    { id: 'Enter', down: 'Enter' },
+    { id: 'Enter', down: '\n' },
   ],
   [
     { id: 'ShiftLeft', down: 'Shift' },
@@ -68,7 +68,7 @@ const BUTTONS_ARRAY_EN = [
     { id: 'AltLeft', down: 'Alt' },
     {
       id: 'Space',
-      down: '',
+      down: '&nbsp',
     },
     { id: 'AltRight', down: 'Alt' },
     { id: 'ControlRight', down: 'Ctrl' },
@@ -181,7 +181,7 @@ const BUTTONS_ARRAY_RU = [
     { id: 'KeyL', down: 'Д' },
     { id: 'Semicolon', down: 'Ж' },
     { id: 'Quote', down: 'Э' },
-    { id: 'Enter', down: 'Enter' },
+    { id: 'Enter', down: '\n' },
   ],
   [
     { id: 'ShiftLeft', down: 'Shift' },
@@ -204,7 +204,7 @@ const BUTTONS_ARRAY_RU = [
     { id: 'AltLeft', down: 'Alt' },
     {
       id: 'Space',
-      down: '',
+      down: '&nbsp',
     },
     { id: 'AltRight', down: 'Alt' },
     { id: 'ControlRight', down: 'Ctrl' },

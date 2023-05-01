@@ -44,6 +44,10 @@ div[data-id='Tab']::after {
   content: 'Tab';
 }
 
+div[data-id='Enter']::after {
+  content: 'Enter';
+}
+
 .textarea-scope {
   height: 100px;
   width: 785px;
@@ -61,4 +65,8 @@ div[data-id='Tab']::after {
 
 .active:hover {
   background: #a1f602;
+}
+
+.buttons-wrapper-active {
+  box-shadow: 1px 1px 20px #ff0000;
 }
